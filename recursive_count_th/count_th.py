@@ -14,7 +14,6 @@ def count_th(word):
         if potential_t + potential_h == "th":
             count += 1
 
-        print("word:", word, "count:", count)
         return keep_count(word[1:len(word)], count)
 
     return keep_count(word, 0)
