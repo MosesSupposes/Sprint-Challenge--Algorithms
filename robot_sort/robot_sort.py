@@ -102,25 +102,35 @@ class SortingRobot:
         
         # This implementation uses bubble sort
         
-        length_of_list = 0
-        # determine the length of the list by repeatedly moving the position to the right until
-        # it can't move right anymore.
-        while self.can_move_right():
-            self.move_right()
-            length_of_list +=1
-        
-        # reset the position to zero.
-        while self.can_move_left():
-            self.move_left()
 
         # for each item in the list...
-        for i in range(0, length_of_list - 1):
+        while(self.can_move_right):
+            self.move_right()
+
+            # if the current item is smaller than the item that comes after it,
+            # this index is already sorted; move on to the next item in the list
+            if self.compare_item() == -1:
+                continue
+
             # if the current item is less than the item in front of the robot
-            if self.compare_item():
+            elif self.compare_item() == 1: 
                 #swap items
                 self.swap_item()
-                # repeat the process
-                self.sort()
+                # turn the light on. If the light is on once we reach the end of the loop,
+                # repeat the entire process. Otherwise, do nothing; the list is already sorted. 
+                self.set_light_on()
+            
+            # Either the held item is equal to the number in front of it, or we've reached
+            # the end of the list. In either case, move on.
+            else:
+                continue
+
+        
+        # If the light is on at the end of the lopp, that means that we had to swap 
+        # an item, and thus the list might not be fully sorted. If this is the case, 
+        # sort the list again, (Keep recursing until the light is off at the end of the loop.)
+        if self.light_is_on():
+            self.sort()
     
 
         # This is a working solution that breaks the rule of "not accessing instance variables".
