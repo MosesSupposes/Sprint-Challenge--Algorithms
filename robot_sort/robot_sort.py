@@ -96,9 +96,48 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
 
+        # I have two solutions to this problem. The first one fails, but hopfully is written clearly.
+        # The second solution passes, but it violates one of the rules (it accesses an instance variable).
+        
+        # This implementation uses bubble sort
+        
+        length_of_list = 0
+        # determine the length of the list by repeatedly moving the position to the right until
+        # it can't move right anymore.
+        while self.can_move_right():
+            self.move_right()
+            length_of_list +=1
+        
+        # reset the position to zero.
+        while self.can_move_left():
+            self.move_left()
+
+        # for each item in the list...
+        for i in range(0, length_of_list - 1):
+            # if the current item is less than the item in front of the robot
+            if self.compare_item():
+                #swap items
+                self.swap_item()
+                # repeat the process
+                self.sort()
+    
+
+        # This is a working solution that breaks the rule of "not accessing instance variables".
+        # This solution uses insertion sort.
+
+        # for i in range(0, len(self._list) - 1):
+        #     cur_index = i
+        #     smallest_index = cur_index
+        #     for j in range(i + 1, len(self._list)):
+        #         if self._list[j] < self._list[smallest_index]:
+        #             smallest_index = j
+                
+        #     #swap
+        #     self._list[i], self._list[smallest_index] = self._list[smallest_index], self._list[i]
+
+        # return self._list 
+         
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
