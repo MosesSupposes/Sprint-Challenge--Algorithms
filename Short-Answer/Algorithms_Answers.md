@@ -6,10 +6,10 @@ a) O(n ^ 2)
 
 b) 0(nlogn)
 
-c) 0 (n)
+c) 0(n)
 
 ## Exercise II
 
 for each floor in the building, starting from the lowest
 floor, drop an egg. As soon as the egg breaks, stop looping.
-The time complexity of this algorithm is O(n)
+The time complexity of this algorithm is O(n).
