@@ -96,9 +96,58 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
 
+        # I have two solutions to this problem. The first one fails, but hopfully is written clearly.
+        # The second solution passes, but it violates one of the rules (it accesses an instance variable).
+        
+        # This implementation uses bubble sort
+        
+
+        # for each item in the list...
+        while(self.can_move_right):
+            self.move_right()
+
+            # if the current item is smaller than the item that comes after it,
+            # this index is already sorted; move on to the next item in the list
+            if self.compare_item() == -1:
+                continue
+
+            # if the current item is less than the item in front of the robot
+            elif self.compare_item() == 1: 
+                #swap items
+                self.swap_item()
+                # turn the light on. If the light is on once we reach the end of the loop,
+                # repeat the entire process. Otherwise, do nothing; the list is already sorted. 
+                self.set_light_on()
+            
+            # Either the held item is equal to the number in front of it, or we've reached
+            # the end of the list. In either case, move on.
+            else:
+                continue
+
+        
+        # If the light is on at the end of the lopp, that means that we had to swap 
+        # an item, and thus the list might not be fully sorted. If this is the case, 
+        # sort the list again, (Keep recursing until the light is off at the end of the loop.)
+        if self.light_is_on():
+            self.sort()
+    
+
+        # This is a working solution that breaks the rule of "not accessing instance variables".
+        # This solution uses insertion sort.
+
+        # for i in range(0, len(self._list) - 1):
+        #     cur_index = i
+        #     smallest_index = cur_index
+        #     for j in range(i + 1, len(self._list)):
+        #         if self._list[j] < self._list[smallest_index]:
+        #             smallest_index = j
+                
+        #     #swap
+        #     self._list[i], self._list[smallest_index] = self._list[smallest_index], self._list[i]
+
+        # return self._list 
+         
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
